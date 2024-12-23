@@ -2,8 +2,13 @@ import express, { Express, Request, Response } from "express";
 const app: Express = express();
 const port: number = 3000;
 
+//Để sử dụng pug
+app.set("views", "./views");
+app.set("view engine", "pug");
+//Hết
+
 app.get("/topics", (req: Request, res: Response) => {
-    res.send("Chủ Đề Bài Hát");
+    res.render("client/pages/topics/index");
 });
 
 app.listen(port, () => {
