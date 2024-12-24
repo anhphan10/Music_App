@@ -1,8 +1,7 @@
-import { Request , Response , Router } from "express";
+import { Router } from "express";
 const router: Router = Router();
-
-import Topic from "../../model/topic.model";
-router.get("/");
+import * as controller from "../../controller/client/topic.controller";
+router.get("/", controller.topics);
 
 
 export const topicRoutes: Router = router;
