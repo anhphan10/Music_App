@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Topic from "../../model/topic.model";
 import Song from "../../model/song.model";
 import Singer from "../../model/singer.model";
+import FavoriteSong from "../../model/favorite-song.model";
 
 
 //[get]/songs/slugTopic
@@ -50,6 +51,11 @@ export const detail = async (req: Request, res: Response) => {
         _id: song.topicId,
         deleted: false
     }).select("title");
+    const favoriteSong = await FavoriteSong.findOne({
+        songId: song.id
+    });
+    song["isFavoriteSong"] = favoriteSong ? "true" : "false";
+
     res.render("client/pages/songs/detail", {
         pageTitle: "Chi Tiết Bài Hát",
         song: song,
@@ -58,25 +64,59 @@ export const detail = async (req: Request, res: Response) => {
     })
 }
 
-//[get]songs/like/typeLike/:idSong
-export const like = async (req: Request , res: Response) => {
-    const idSong: String = req.params.idSong; 
+//[patch]songs/like/typeLike/:idSong
+export const like = async (req: Request, res: Response) => {
+    const idSong: String = req.params.idSong;
     const typeLike = req.params.typeLike;
     const song = await Song.findOne({
-        _id : idSong,
+        _id: idSong,
         status: "active",
         deleted: false
     });
 
-    const newLike : number = typeLike == "like" ? song.like + 1 : song.like -1
+    const newLike: number = typeLike == "like" ? song.like + 1 : song.like - 1
 
-    await Song.updateOne({_id: idSong},{
-        like : newLike
+    await Song.updateOne({ _id: idSong }, {
+        like: newLike
     });
 
     res.json({
-        code:200,
+        code: 200,
         message: "Thành Công",
         like: newLike
+    })
+}
+
+//[patch]songs/favorite/typeFavorite/:idSong
+export const favorite = async (req: Request, res: Response) => {
+    const idSong: String = req.params.idSong;
+    const typeFavorite: String = req.params.typeFavorite;
+
+    switch (typeFavorite) {
+        case "favorite":
+            const existFavoriteSong = await FavoriteSong.findOne({
+                _id: idSong
+            });
+            if (!existFavoriteSong) {
+                const record = new FavoriteSong({
+                    // userId
+                    songId: idSong
+                });
+                await record.save();
+            };
+            break;
+        case "unfavorite":
+            await FavoriteSong.deleteOne({
+                songId: idSong
+            });
+            break;
+        default:
+            break;
+    };
+
+
+    res.json({
+        code: 200,
+        message: "Thành Công"
     })
 }

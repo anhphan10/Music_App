@@ -156,11 +156,23 @@
     color: #004cd0;
 }
 
+.singer-detail .inner-actions .inner-heart i {
+    color: red;
+}
+
 .singer-detail .inner-action1 .inner-like .active {
     color: #004cd0;
 }
 
 .singer-detail .inner-action1 .inner-like .active i {
+    font-weight: 900;
+}
+
+.singer-detail .inner-action .inner-heart.active {
+    color: red;
+}
+
+.singer-detail .inner-action .inner-heart.active i {
     font-weight: 900;
 }
 
