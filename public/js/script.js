@@ -56,7 +56,7 @@ if (buttonLike) {
 //end
 
 //Button-favorite
-const listButtonFavorite = document.querySelector("[button-favorite]");
+const listButtonFavorite = document.querySelectorAll("[button-favorite]");
 if (listButtonFavorite.length > 0) {
     listButtonFavorite.foreach((buttonFavorite) => {
         buttonFavorite.addEventListener("click", () => {
