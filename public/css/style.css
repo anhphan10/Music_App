@@ -116,6 +116,21 @@
 
 }
 
+.song-item.inner-content.inner-heart {
+    font-size: 13;
+    font-weight: 500;
+    margin-bottom: 2;
+    cursor: pointer;
+}
+
+.song-item .inner-content .inner-heart .active {
+    color: red;
+}
+
+.song-item .inner-content .inner-heart .active i {
+    font-weight: 900;
+}
+
 /* Chỉ áp dụng cho phần singer-detail */
 .singer-detail .container {
     max-width: 800px;
