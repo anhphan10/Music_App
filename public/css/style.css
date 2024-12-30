@@ -146,15 +146,25 @@
     color: #666;
 }
 
-.singer-detail .inner-action {
+.singer-detail .inner-actions {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.singer-detail .inner-action i {
-    color: #ff5722;
+.singer-detail .inner-actions .inner-like i {
+    color: #004cd0;
 }
+
+.singer-detail .inner-action1 .inner-like .active {
+    color: #004cd0;
+}
+
+.singer-detail .inner-action1 .inner-like .active i {
+    font-weight: 900;
+}
+
+
 
 /* Phần phát nhạc */
 .singer-detail .inner-play {
