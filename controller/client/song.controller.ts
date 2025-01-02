@@ -67,7 +67,7 @@ export const detail = async (req: Request, res: Response) => {
 //[patch]songs/like/typeLike/:idSong
 export const like = async (req: Request, res: Response) => {
     const idSong: String = req.params.idSong;
-    const typeLike = req.params.typeLike;
+    const typeLike: String = req.params.typeLike;
     const song = await Song.findOne({
         _id: idSong,
         status: "active",
