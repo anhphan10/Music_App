@@ -99,11 +99,11 @@ if (boxSearch) {
                     boxSuggest.classList.add("show");
                     const htmls = songs.map(song => {
                         return `
-                        <a(class="inner-item" href="/song/detail/${song.slug}")>
-                            <div class="inner-img"><img src="${song.avatar}"/></div>
+                        <a class="inner-item" href="/songs/detail/${song.slug}">
+                            <div class="inner-image"><img src="${song.avatar}"/></div>
                             <div class="inner-info">
                                 <div class="inner-title">${song.title} </div>
-                                <div class="inner-singer"><i class="fa-solid fa-microphone-lines"></i>${song.infoSinger.fullName}
+                                <div class="inner-singer"><i class="fa-solid fa-microphone-lines"></i> ${song.infoSinger.fullName}</div>
                             </div>
                         </a>
                         `;
