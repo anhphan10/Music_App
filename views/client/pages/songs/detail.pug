@@ -18,6 +18,9 @@ block main
                         div(class="inner-action1 inner-like active" button-like = song.id)
                             <i class= "fa-regular fa-thumbs-up"></i>  
                             span #{song.like} Thích
+                        div(class="inner-action inner-listen")
+                            <i class= "fa-solid fa-headphones"></i>
+                            span   #{song.listen} Lượt Nghe
                         div(class="inner-action inner-heart" + (song.isFavoriteSong ? "active" : "") button-favorite = song.id)
                             <i class= "fa-regular fa-heart"></i> Bài Hát Yêu Thích
 
