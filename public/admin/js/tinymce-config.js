@@ -18,7 +18,7 @@ tinymce.init({
                 const blobInfo = blobCache.create(id, file, base64);
                 blobCache.add(blobInfo);
 
-               
+
                 cb(blobInfo.blobUri(), { title: file.name });
             });
             reader.readAsDataURL(file);
