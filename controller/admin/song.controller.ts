@@ -25,7 +25,15 @@ export const create = async (req: Request, res: Response) => {
 }
 //[Post]/admin/songs/create
 export const createPost = async (req: Request, res: Response) => {
-    const dataSong = {
+    interface Song {
+        title: String,
+        topicId: String,
+        singerId: String,
+        description: String,
+        status: String,
+        avatar: String
+    }
+    const dataSong : Song = {
         title: req.body.title,
         topicId: req.body.topicId,
         singerId: req.body.singerId,
