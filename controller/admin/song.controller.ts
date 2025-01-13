@@ -25,13 +25,22 @@ export const create = async (req: Request, res: Response) => {
 }
 //[Post]/admin/songs/create
 export const createPost = async (req: Request, res: Response) => {
+    let avatar = "";
+    let audio = "";
+    if(req.body.avatar){
+        avatar = req.body.avatar[0];
+    }
+    if(req.body.audio){
+        audio = req.body.audio[0];
+    }
     interface Song {
         title: String,
         topicId: String,
         singerId: String,
         description: String,
         status: String,
-        avatar: String
+        avatar: String,
+        audio: String
     }
     const dataSong : Song = {
         title: req.body.title,
@@ -39,7 +48,8 @@ export const createPost = async (req: Request, res: Response) => {
         singerId: req.body.singerId,
         description: req.body.description,
         status: req.body.status,
-        avatar: req.body.avatar
+        avatar: avatar,
+        audio: audio
     }
     const song = new Song(dataSong);
     await song.save();
