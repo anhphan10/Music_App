@@ -258,6 +258,7 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    white-space: pre;
 }
 
 /* box-search */
