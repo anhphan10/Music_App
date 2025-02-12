@@ -3,6 +3,7 @@ import Song from "../../model/song.model";
 import Topic from "../../model/topic.model";
 import Singer from "../../model/singer.model";
 import { systemConfig } from "../../config/config";
+import { title } from "process";
 //[Get]/admin/songs
 export const song = async (req: Request, res: Response) => {
     const songs = await Song.find({ deleted: false });
@@ -27,10 +28,10 @@ export const create = async (req: Request, res: Response) => {
 export const createPost = async (req: Request, res: Response) => {
     let avatar = "";
     let audio = "";
-    if(req.body.avatar){
+    if (req.body.avatar) {
         avatar = req.body.avatar[0];
     }
-    if(req.body.audio){
+    if (req.body.audio) {
         audio = req.body.audio[0];
     }
     interface Song {
@@ -43,7 +44,7 @@ export const createPost = async (req: Request, res: Response) => {
         audio: String,
         lyrics: String
     }
-    const dataSong : Song = {
+    const dataSong: Song = {
         title: req.body.title,
         topicId: req.body.topicId,
         singerId: req.body.singerId,
@@ -56,4 +57,42 @@ export const createPost = async (req: Request, res: Response) => {
     const song = new Song(dataSong);
     await song.save();
     res.redirect(`/${systemConfig.prefixAdmin}/songs`);
+}
+//[Get]/admin/songs/edit/id
+export const edit = async (req: Request, res: Response) => {
+    const song = await Song.findOne({ _id: req.params.id }, { deleted: false });
+    const topics = await Topic.find({
+        deleted: false
+    }).select("title");
+    const singers = await Singer.find({
+        deleted: false
+    }).select("fullName");
+    res.render("admin/pages/songs/edit", {
+        pageTitle: "Trang Chỉnh Sửa Bài Hát",
+        song: song,
+        topics: topics,
+        singers: singers
+    })
+}
+//[Patch]/admin/songs/edit/id
+export const editPatch = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const dataSong = {
+        title: req.body.title,
+        topicId: req.body.topicId,
+        singerId: req.body.singerId,
+        description: req.body.description,
+        status: req.body.status,
+        lyrics: req.body.lyrics
+    };
+    if (req.body.avatar) {
+        dataSong["avatar"] = req.body.avatar[0]
+    };
+    if (req.body.audio) {
+        dataSong["audio"] = req.body.audio[0]
+    }
+    await Song.updateOne({
+        _id: id,
+    }, dataSong);
+    res.redirect("back");
 }
