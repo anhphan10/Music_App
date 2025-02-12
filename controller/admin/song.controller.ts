@@ -3,7 +3,6 @@ import Song from "../../model/song.model";
 import Topic from "../../model/topic.model";
 import Singer from "../../model/singer.model";
 import { systemConfig } from "../../config/config";
-import { title } from "process";
 //[Get]/admin/songs
 export const song = async (req: Request, res: Response) => {
     const songs = await Song.find({ deleted: false });
