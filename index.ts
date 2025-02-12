@@ -15,10 +15,10 @@ const port: number | string = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 //Nhúng file tĩnh
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 //Hết
 //Để sử dụng pug
-app.set("views", "./views");
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 //Hết
 //TinyMCE

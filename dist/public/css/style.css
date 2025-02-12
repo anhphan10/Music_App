@@ -1,0 +1,340 @@
+/* Header */
+.header {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.header .inner-logo img {
+    max-height: 60px;
+    max-width: 100px;
+}
+
+.header .inner-menu>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.header .inner-menu>ul>li {
+    margin-left: 20px;
+}
+
+/* End */
+
+/* Footer */
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* End */
+
+/* Box-head */
+.box-head {
+    margin-bottom: 30px;
+}
+
+.box-head .inner-title {
+    margin-bottom: 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: green;
+}
+
+/* End */
+
+/* song-items */
+.song-item {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.song-item .inner-image {
+    width: 115px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.song-item .inner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-item .inner-content {
+    padding: 10px;
+    flex: 1;
+}
+
+.song-item .inner-content .inner-title {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    margin-bottom: 5px;
+}
+
+.song-item .inner-content .inner-title a {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4d007d;
+}
+
+.song-item .inner-content .inner-title a:hover {
+    color: #7c00c8;
+    text-decoration: none;
+}
+
+.song-item .inner-content .inner-singer {
+    font-size: 13px;
+    font-weight: 500;
+    color: #282828;
+    margin-bottom: 2px;
+}
+
+.song-item .inner-content .inner-like {
+    font-size: 13px;
+    font-weight: 500;
+    color: #004cd0;
+    margin-bottom: 2px;
+}
+
+.song-item .inner-content .inner-time {
+    font-size: 13px;
+    font-weight: 500;
+    color: #585858;
+
+}
+
+.song-item.inner-content.inner-heart {
+    font-size: 13;
+    font-weight: 500;
+    margin-bottom: 2;
+    cursor: pointer;
+}
+
+.song-item .inner-content .inner-heart .active {
+    color: red;
+}
+
+.song-item .inner-content .inner-heart .active i {
+    font-weight: 900;
+}
+
+/* Chỉ áp dụng cho phần singer-detail */
+.singer-detail .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.singer-detail .inner-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5722;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Các hành động */
+.singer-detail .inner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.singer-detail .inner-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.singer-detail .inner-actions .inner-like i {
+    color: #004cd0;
+}
+
+.singer-detail .inner-actions .inner-heart i {
+    color: red;
+}
+
+.singer-detail .inner-action1 .inner-like .active {
+    color: #004cd0;
+}
+
+.singer-detail .inner-action1 .inner-like .active i {
+    font-weight: 900;
+}
+
+.singer-detail .inner-action .inner-heart.active {
+    color: red;
+}
+
+.singer-detail .inner-action .inner-heart.active i {
+    font-weight: 900;
+}
+
+
+
+/* Phần phát nhạc */
+.singer-detail .inner-play {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+}
+
+.singer-detail .inner-avatar {
+    flex: 0 0 auto;
+}
+
+.singer-detail .inner-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    /* Chuyển hình ảnh thành hình tròn */
+    object-fit: cover;
+    border: 2px solid #ff5722;
+    animation: rotate-image 10s linear infinite;
+    /* Tự động xoay liên tục */
+}
+
+@keyframes rotate-image {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.singer-detail .inner-audio {
+    flex: 1;
+}
+
+.singer-detail .inner-audio audio {
+    width: 100%;
+    max-width: 400px;
+    outline: none;
+}
+
+/* Phần mô tả */
+.singer-detail .inner-desc {
+    margin-bottom: 20px;
+}
+
+.singer-detail .inner-label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #ff5722;
+    margin-bottom: 5px;
+}
+
+.singer-detail .inner-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    white-space: pre;
+}
+
+/* box-search */
+.box-search {
+    position: relative;
+}
+
+.box-search .inner-suggest {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    z-index: 1;
+    overflow-y: auto;
+    display: none;
+}
+
+.box-search .inner-suggest.show {
+    display: block;
+}
+
+.box-search .inner-suggest .inner-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.box-search .inner-suggest .inner-item:hover {
+    background: #efefef;
+    text-decoration: none;
+}
+
+.box-search .inner-suggest .inner-item:last-child {
+    border-bottom: 0;
+}
+
+.box-search .inner-suggest .inner-item .inner-image {
+    width: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.box-search .inner-suggest .inner-item .inner-image img {
+    width: 60px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.box-search .inner-suggest .inner-item .inner-info {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.box-search .inner-suggest .inner-item .inner-info .inner-title {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4d007d;
+}
+
+.box-search .inner-suggest .inner-item .inner-info .inner-singer {
+    font-size: 13px;
+    font-weight: 500;
+    color: #282828;
+    margin-bottom: 2px;
+}
