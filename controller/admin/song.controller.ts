@@ -95,3 +95,16 @@ export const editPatch = async (req: Request, res: Response) => {
     }, dataSong);
     res.redirect("back");
 }
+//[Delete]/admin/songs/delete/:id
+export const deletePost = async (req: Request, res: Response) => {
+    const id: string = req.params.id;
+    try {
+        await Song.updateOne(
+            { _id: id },
+            { deleted: true }
+        );
+        res.redirect("back");
+    } catch (error) {
+        console.log(error);
+    }
+}

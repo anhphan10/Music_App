@@ -28,5 +28,6 @@ router.patch(
     uploadCloud.uploadFields,
     controller.editPatch
 );
+router.get("/delete/:id" , controller.deletePost);
 
 export const songRoutes: Router = router;
