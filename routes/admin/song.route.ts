@@ -29,5 +29,6 @@ router.patch(
     controller.editPatch
 );
 router.get("/delete/:id" , controller.deletePost);
+router.get("/detail/:id" , controller.detail);
 
 export const songRoutes: Router = router;

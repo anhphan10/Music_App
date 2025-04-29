@@ -108,3 +108,17 @@ export const deletePost = async (req: Request, res: Response) => {
         console.log(error);
     }
 }
+
+export const detail = async (req: Request, res: Response) => {
+    const song = await Song.findOne({ _id: req.params.id }, { deleted: false });
+    const singer = await Singer.findOne({ _id: song.singerId });
+    const topic = await Topic.findOne({ _id: song.topicId });
+    res.render("admin/pages/songs/detail", {
+        pageTitle: "Trang Chi Tiết Bài Hát",
+        song: song,
+        singer: singer,
+        topic: topic
+    });
+
+
+}

@@ -1,0 +1,65 @@
+extends ../../layouts/default.pug 
+block main
+    h1 Chi Tiết Bài Bài Hát
+    if (song.avatar)
+        div(class = "mb-4")
+            img(
+                src=song.avatar
+                style="width: 100px"
+            )
+    if (song.title)
+        div(class="form-group")
+            label(for="title") Tiêu Đề
+                input(
+                    type="text"
+                    class="form-control"
+                    value= song.title
+                )
+    if (song.description)
+        div(class="form-group")
+            label(for="description") Mô Tả
+                input(
+                    type="text"
+                    class="form-control"
+                    value= song.description
+                )
+    if (singer.fullName)
+        div(class="form-group")
+            label(for="fullName") Tên Ca Sĩ
+                input(
+                    type="text"
+                    class="form-control"
+                    value= singer.fullName
+                )
+    if (topic.title)
+        div(class="form-group")
+            label(for="titleTopic") Chủ Đề
+                input(
+                    type="text"
+                    class="form-control"
+                    value= topic.title
+                )
+    if (song.like)
+        div(class="form-group")
+            label(for="like") Lượt Thích
+                input(
+                    type="text"
+                    class="form-control"
+                    value= song.like
+                )
+    if (song.status)
+        div(class="form-group")
+            label(for="status") Trạng Thái
+                input(
+                    type="text"
+                    class="form-control"
+                    value= song.status
+                )
+    if (song.listen)
+        div(class="form-group")
+            label(for="status") Lượt Nghe
+                input(
+                    type="text"
+                    class="form-control"
+                    value= song.listen
+                )
