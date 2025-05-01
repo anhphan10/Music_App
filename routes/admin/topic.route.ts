@@ -17,4 +17,5 @@ router.post(
     controller.createPost
 );
 router.get("/delete/:id", controller.deleteTopic);
+router.get("/detail/:id", controller.detailTopic);
 export const topicRoutes: Router = router;

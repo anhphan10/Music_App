@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug 
+block main
+    h1 Chi Tiết Chủ Đề
+    if (topic.avatar)
+        div(class = "mb-4")
+            img(
+                src=topic.avatar
+                style="width: 100px"
+            )
+    if (topic.title)
+        div(class="form-group")
+            label(for="title") Tiêu Đề
+                input(
+                    type="text"
+                    class="form-control"
+                    value= topic.title
+                )
+    if (topic.description)
+        div(class="form-group")
+            label(for="description") Mô Tả
+                input(
+                    type="text"
+                    class="form-control"
+                    value= topic.description
+                )
+    if (topic.status)
+        div(class="form-group")
+            label(for="status") Trạng Thái
+                input(
+                    type="text"
+                    class="form-control"
+                    value= topic.status
+                )

@@ -56,3 +56,11 @@ export const deleteTopic = async (req: Request, res: Response) => {
         console.log(error);
     }
 }
+//[GET]/admin/topics/detail/:id
+export const detailTopic = async(req:Request, res:Response)=>{
+    const topic = await Topic.findOne({_id:req.params.id},{deleted:false});
+    res.render("admin/pages/topics/detail",{
+        pageTitle:"Trang Chi Tiết Chủ Đề",
+        topic:topic
+    });
+}
