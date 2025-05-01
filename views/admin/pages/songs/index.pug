@@ -42,11 +42,17 @@ block main
                                     a(
                                         href="javascript:;"
                                         class="badge badge-success"
+                                        data-status = "active"
+                                        button-change-status
+                                        data-id=item.id
                                     ) Hoạt Động
                                 else
                                     a(
                                         href="javascript:;"
-                                        class="badge badge-success"
+                                        class="badge badge-danger"
+                                        data-status= "inactive"
+                                        button-change-status
+                                        data-id= item.id
                                     ) Dừng Hoạt Động
                             td
                                 a(
@@ -61,3 +67,10 @@ block main
                                     class="btn btn-danger btn-sm ml-1"
                                     href=`/${prefixAdmin}/songs/delete/${item.id}`
                                 ) Xóa
+    form(
+        action = ""
+        method = "POST"
+        id = "form-change-status"
+        data-path=`/${prefixAdmin}/songs/change-status`
+    )
+    script(src="/admin/js/script.js")

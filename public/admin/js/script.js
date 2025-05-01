@@ -21,7 +21,7 @@ if (uploadAudio) {
   const uploadAudioPlay = uploadAudio.querySelector("[upload-audio-play]");
   const source = uploadAudio.querySelector("source");
   uploadAudioInput.addEventListener("change", (e) => {
-    if(e.target.files.length){
+    if (e.target.files.length) {
       const audio = URL.createObjectURL(e.target.files[0]);
       source.src = audio;
       uploadAudioPlay.load();
@@ -30,3 +30,28 @@ if (uploadAudio) {
 }
 
 //end upload audio
+    
+//change-status
+const buttonChangeStatus = document.querySelectorAll("[button-change-status]");
+if (buttonChangeStatus.length > 0) {
+
+  const formChangeStatus = document.querySelector("#form-change-status")
+  const path = formChangeStatus.getAttribute("data-path")
+
+
+
+
+  buttonChangeStatus.forEach(button => {
+    button.addEventListener("click", () => {
+      const statusCurrent = button.getAttribute("data-status")
+      const id = button.getAttribute("data-id")
+
+      let statusChange = statusCurrent == "active" ? "inactive" : "active";
+
+      const action = path + `/${statusChange}/${id}?_method=PATCH`;
+      formChangeStatus.action = action;
+
+      formChangeStatus.submit();
+    })
+  })
+}

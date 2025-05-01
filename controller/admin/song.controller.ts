@@ -119,6 +119,17 @@ export const detail = async (req: Request, res: Response) => {
         singer: singer,
         topic: topic
     });
+}
+//[PATCH]/admin/songs/change-status/:status/:id
+export const changeStatus = async (req: Request, res: Response) => {
+    const status: string = req.params.status;
+    const id: string = req.params.id;
+    try {
+        await Song.updateOne({ _id: id }, { status: status });
+    } catch (error) {
+        console.log(error)
+    }
 
+    res.redirect("back");
 
 }
