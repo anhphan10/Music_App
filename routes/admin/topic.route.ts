@@ -18,4 +18,13 @@ router.post(
 );
 router.get("/delete/:id", controller.deleteTopic);
 router.get("/detail/:id", controller.detailTopic);
+router.get("/edit/:id", controller.editTopic);
+router.patch(
+    "/edit/:id",
+    upload.fields([
+        { name: "avatar", maxCount: 1 }
+    ]),
+    uploadCloud.uploadFields,
+    controller.editPatchTP
+);
 export const topicRoutes: Router = router;
