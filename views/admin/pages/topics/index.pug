@@ -40,11 +40,17 @@ block main
                                     a(
                                         href="javascript:;"
                                         class="badge badge-success"
+                                        data-status="active"
+                                        data-id=item.id
+                                        button-change-status
                                     ) Hoạt Động
                                 else
                                     a(
                                         href="javascript:;"
-                                        class="badge badge-success"
+                                        class="badge badge-danger"
+                                        data-status="inactive"
+                                        data-id=item.id
+                                        button-change-status
                                     ) Dừng Hoạt Động
                             td
                                 a(
@@ -58,4 +64,11 @@ block main
                                 a(
                                     class="btn btn-danger btn-sm ml-1"
                                     href=`/${prefixAdmin}/topics/delete/${item.id}`
-                                ) Xóa
+                                ) Xóa 
+    form(
+        action = ""
+        method = "POST"
+        id = "form-change-status"
+        data-path=`/${prefixAdmin}/topics/change-status`
+    )
+    script(src="/admin/js/topic.js")

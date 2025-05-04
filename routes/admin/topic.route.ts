@@ -27,4 +27,6 @@ router.patch(
     uploadCloud.uploadFields,
     controller.editPatchTP
 );
+router.patch("/change-status/:status/:id" , controller.changeStatus);
+
 export const topicRoutes: Router = router;

@@ -91,3 +91,13 @@ export const editPatchTP = async (req: Request, res: Response) => {
         console.log(error)
     }
 }
+export const changeStatus = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const status = req.params.status;
+    try {
+        await Topic.updateOne({ _id: id }, { status: status });
+        res.redirect(`/${systemConfig.prefixAdmin}/topics`);
+    } catch (error) {
+        console.log(error);
+    }
+}
