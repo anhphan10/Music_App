@@ -53,8 +53,13 @@ export const createPost = async (req: Request, res: Response) => {
         audio: audio,
         lyrics: req.body.lyrics
     }
-    const song = new Song(dataSong);
-    await song.save();
+    try {
+        const song = new Song(dataSong);
+        await song.save();
+        (req as any).flash('success', "Thêm Thành Công Bài Hát")
+    } catch (error) {
+
+    }
     res.redirect(`/${systemConfig.prefixAdmin}/songs`);
 }
 //[Get]/admin/songs/edit/id

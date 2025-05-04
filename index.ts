@@ -7,6 +7,9 @@ import { systemConfig } from "./config/config";
 import path from 'path';
 import bodyParser from "body-parser";
 import methodOverride from 'method-override';
+import flash from "flash";
+import cookieParser from "cookie-parser";
+import session from "express-session";
 dotenv.config();
 database.connect();
 const app: Express = express();
@@ -21,6 +24,11 @@ app.use(express.static(`${__dirname}/public`));
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 //Hết
+//flash
+app.use(cookieParser("keyboard cat"));
+app.use(session({ cookie: { maxAge: 6000 } }));
+app.use(flash());
+//end
 //TinyMCE
 app.use("/tinymce", express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 //Het

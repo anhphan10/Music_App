@@ -1,5 +1,9 @@
 extends ../../layouts/default.pug 
+include ../../mixins/alert.pug
+
 block main
+    //- +alert-success(5000)
+    //- +alert-error(5000)
     h1(class="mb-4") #{pageTitle}
 
     form(
@@ -71,7 +75,7 @@ block main
             )
             audio(controls upload-audio-play)
                 source(src="") 
-        
+
         div(class="form-group")
             label(for="lyric") Lời Bài Hát
             textarea(
@@ -113,3 +117,6 @@ block main
                 type="submit"
                 class="btn btn-primary"
             ) Tạo Mới
+
+
+    script(src="/admin/js/script.js")       
