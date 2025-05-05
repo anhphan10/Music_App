@@ -30,3 +30,34 @@ export const detail = async (req: Request, res: Response) => {
         singer: singer
     })
 }
+
+//[Get]/admin/singers/create
+export const create = async (req: Request, res: Response) => {
+    res.render("admin/pages/singers/create", {
+        pageTitle: "Trang Thêm Ca Sĩ"
+    })
+}
+//[Post]/admin/singers/create
+export const createPostSG = async (req: Request, res: Response) => {
+    let avatar = "";
+    if (req.body.avatar) {
+        avatar = req.body.avatar[0];
+    }
+    interface Singer {
+        fullName: String,
+        status: String,
+        avatar: String
+    }
+    const dataSinger: Singer = {
+        fullName: req.body.fullName,
+        status: req.body.status,
+        avatar: avatar
+    }
+    try {
+        const singer = new Singer(dataSinger);
+        await singer.save();
+    } catch (error) {
+
+    }
+    res.redirect(`/${systemConfig.prefixAdmin}/singers`);
+}
