@@ -1,0 +1,25 @@
+extends ../../layouts/default.pug 
+block main
+    h1 Chi Tiết Ca Sĩ
+    if (singer.avatar)
+        div(class = "mb-4")
+            img(
+                src=singer.avatar
+                style="width: 100px"
+            )
+    if (singer.fullName)
+        div(class="form-group")
+            label(for="fullName") Tên Ca Sĩ
+                input(
+                    type="text"
+                    class="form-control"
+                    value= singer.fullName
+                )
+    if (singer.status)
+        div(class="form-group")
+            label(for="status") Trạng Thái
+                input(
+                    type="text"
+                    class="form-control"
+                    value= singer.status
+                )

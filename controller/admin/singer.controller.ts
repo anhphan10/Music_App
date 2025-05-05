@@ -15,9 +15,18 @@ export const changeStatus = async (req: Request, res: Response) => {
     const status = req.params.status;
     const id = req.params.id;
     try {
-        await Singer.updateOne({_id:id},{status:status});
+        await Singer.updateOne({ _id: id }, { status: status });
         res.redirect(`/${systemConfig.prefixAdmin}/singers`);
     } catch (error) {
         console.log(error);
     }
+}
+//[Get]/admin/singers/detail/:id
+export const detail = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const singer = await Singer.findOne({ _id: id });
+    res.render("admin/pages/singers/detail", {
+        pageTitle: "Trang Chi Tiết Ca Sĩ",
+        singer: singer
+    })
 }
