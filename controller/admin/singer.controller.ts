@@ -61,3 +61,31 @@ export const createPostSG = async (req: Request, res: Response) => {
     }
     res.redirect(`/${systemConfig.prefixAdmin}/singers`);
 }
+//[Get]/admin/edit/id
+export const edit = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const singer = await Singer.findOne({ _id: id });
+    res.render("admin/pages/singers/edit", {
+        pageTitle: "Trang Sửa Ca Sĩ",
+        singer: singer
+    })
+}
+//[Patch]/admin/edit/id
+export const editPatch = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const dataSinger = {
+        fullName: req.body.fullName,
+        status: req.body.status
+    };
+    if (req.body.avatar) {
+        dataSinger["avatar"] = req.body.avatar[0]
+    };
+    try {
+        await Singer.updateOne({
+            _id: id,
+        }, dataSinger);
+        res.redirect(`/${systemConfig.prefixAdmin}/singers`);
+    } catch (error) {
+        console.log(error)
+    }
+}
