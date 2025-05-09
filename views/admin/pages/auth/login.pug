@@ -7,8 +7,9 @@ block main
             .col-md-6.col-lg-5
                 h1.text-center Đăng Nhập
                 form(
-                    action=`${prefixAdmin}/auth/login`,
+                    action=`/${prefixAdmin}/auth/login`,
                     method="POST"
+                    enctype="multipart/form-data"
                 )
                     .form-group
                         label(for="email") Email
