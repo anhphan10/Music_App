@@ -1,0 +1,22 @@
+extends ../../layouts/default.pug
+
+block main
+    h1(class="mb-4") Danh Sách Tài Khoản
+
+        .card.mb-3
+            .card-header Danh Sách
+            .card-body
+                .row
+                    .col-8
+                    .col-4.text-right
+                        a(
+                            href=`/${prefixAdmin}/accounts/create`
+                            class="btn btn-outline-success"
+                        ) + Thêm Mới
+        form(
+            action="" 
+            method="POST"
+            id="form-change-status"
+            data-path=`${prefixAdmin}/accounts/change-status`
+        )
+        script(src="/admin/js/account.js") 
