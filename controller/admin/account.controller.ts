@@ -4,8 +4,10 @@ import Account from "../../model/account.model";
 import md5 from "md5";
 //[Get]/amin/accounts
 export const index = async (req: Request, res: Response) => {
+    const account = await Account.find({ deleted: false });
     res.render("admin/pages/account/index", {
-        pageTitle: "Trang Tạo Tài Khoản"
+        pageTitle: "Trang Tạo Tài Khoản",
+        account: account
     })
 }
 //[Get]/amin/accounts/create

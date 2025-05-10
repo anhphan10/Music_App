@@ -11,8 +11,6 @@ export const login = async (req: Request, res: Response) => {
 //[POST]/admin/auth/login
 export const loginPost = async (req: Request, res: Response) => {
     const user = await Account.findOne({ email: req.body.email }, { deleted: false });
-    console.log(user);
-
     if (!user) {
         res.redirect(`/${systemConfig.prefixAdmin}/auth/login`)
         return;
