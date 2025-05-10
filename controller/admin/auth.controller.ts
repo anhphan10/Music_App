@@ -10,7 +10,6 @@ export const login = async (req: Request, res: Response) => {
 }
 //[POST]/admin/auth/login
 export const loginPost = async (req: Request, res: Response) => {
-    console.log(req.body);
     const user = await Account.findOne({ email: req.body.email }, { deleted: false });
     console.log(user);
 
@@ -30,4 +29,9 @@ export const loginPost = async (req: Request, res: Response) => {
     }
     res.cookie("token", user.token);
     res.redirect(`/${systemConfig.prefixAdmin}/dashboard`)
+}
+//[GET]/admin/auth/logout
+export const logout = async (req: Request, res: Response) => {
+    res.clearCookie("token");
+    res.redirect(`/${systemConfig.prefixAdmin}/auth/login`)
 }

@@ -1,33 +1,37 @@
 extends ../../layouts/auth.pug
-//- include ../../mixins/alert.pug 
+
 
 block main
     .container.my-5
         .row.justify-content-center
-            .col-md-6.col-lg-5
-                h1.text-center Đăng Nhập
+            .col-8
+                h1(class="text-center") Đăng Nhập
                 form(
-                    action=`/${prefixAdmin}/auth/login`,
+                    action=`/${prefixAdmin}/auth/login`
                     method="POST"
-                    enctype="multipart/form-data"
                 )
-                    .form-group
+                    div(class="form-group")
                         label(for="email") Email
-                        input#email.form-group(
-                            type="text",
-                            name="email",
-                            required=true,
-                            placeholder="Nhập email..."
+                        br 
+                        input(
+                            type="text"
+                            class="form-group"
+                            id="email"
+                            name="email"
+                            required
                         )
-
-                    .form-group
+                    div(class="form-group")
                         label(for="password") Mật Khẩu
-                        input#password.form-group(
-                            type="password",
-                            name="password",
-                            required=true,
-                            placeholder="Nhập mật khẩu..."
+                        br 
+                        input(
+                            type="password"
+                            class="form-group"
+                            id="password"
+                            name="password"
+                            required
                         )
-
-                    .form-group
-                        button.btn.btn-primary.btn-block(type="submit") Đăng Nhập
+                    div(class="form-group")
+                        button(
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                        ) Đăng Nhập
