@@ -4,7 +4,6 @@ import { Request, Response, NextFunction } from "express";
 export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
 
     if (!req.cookies.token) {
-        console.log("no token found")
         res.redirect(`/${systemConfig.prefixAdmin}/auth/login`)
     }
     else {

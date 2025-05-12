@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Account from "../../model/account.model";
 import { systemConfig } from "../../config/config";
 import md5 from "md5";
+import flash from "flash";
 //[Get]/admin/auth/login
 export const login = async (req: Request, res: Response) => {
     res.render("admin/pages/auth/login", {

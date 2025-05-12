@@ -33,7 +33,7 @@ export const createAcc = async (req: Request, res: Response) => {
     const dataAcc: Account = {
         fullName: req.body.fullName,
         email: req.body.email,
-        password: req.body.password,
+        password: md5(req.body.password),
         phone: req.body.phone,
         status: req.body.status,
         avatar: avatar
@@ -46,10 +46,21 @@ export const createAcc = async (req: Request, res: Response) => {
         res.redirect("back");
     }
     else {
-        req.body.password = md5(req.body.password)
         const records = new Account(dataAcc);
         await records.save();
         res.redirect(`/${systemConfig.prefixAdmin}/accounts`)
+    }
+}
+
+//[Patch]/admin/change-status/:status/:id
+export const changeStatus = async (req: Request, res: Response) => {
+    const status = req.params.status;
+    const id = req.params.id;
+    try {
+        await Account.updateOne({ _id: id }, { status: status });
+        res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
+    } catch (error) {
+        console.log(error);
     }
 }
 

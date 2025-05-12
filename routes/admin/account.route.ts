@@ -14,5 +14,6 @@ router.post(
     uploadCloud.uploadFields,
     controller.createAcc
 );
+router.patch("/change-status/:status/:id", controller.changeStatus);
 
 export const accountRoutes: Router = router;
