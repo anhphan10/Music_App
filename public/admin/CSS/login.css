@@ -77,3 +77,31 @@ input.form-group:focus {
         padding: 40px 25px;
     }
 }
+
+/* alert */
+.alert {
+    padding: 10px 20px;
+    margin: 15px 0;
+    border-radius: 5px;
+    position: relative;
+    font-weight: bold;
+    transition: opacity 0.5s ease;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.close-alert {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}

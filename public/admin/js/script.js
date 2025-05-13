@@ -30,7 +30,7 @@ if (uploadAudio) {
 }
 
 //end upload audio
-    
+
 //change-status
 const buttonChangeStatus = document.querySelectorAll("[button-change-status]");
 if (buttonChangeStatus.length > 0) {
@@ -56,17 +56,33 @@ if (buttonChangeStatus.length > 0) {
   })
 }
 //show alert
-const showAlert = document.querySelector("[show-alert]");
-if (showAlert) {
-  const time = parseInt(showAlert.getAttribute("data-time"));
-  const closeAlert = document.querySelector("[close-alert]")
+// const showAlert = document.querySelector("[show-alert]");
+// if (showAlert) {
+//   const time = parseInt(showAlert.getAttribute("data-time"));
+//   const closeAlert = document.querySelector("[close-alert]")
 
-  setTimeout(() => {
-    showAlert.classList.add("alert-hidden");
-  }, 3000);
+//   setTimeout(() => {
+//     showAlert.classList.add("alert-hidden");
+//   }, 3000);
 
-  closeAlert.addEventListener("click", () => {
-    showAlert.classList.add("alert-hidden");
-  })
-}
+//   closeAlert.addEventListener("click", () => {
+//     showAlert.classList.add("alert-hidden");
+//   })
+// }
 // end show alert
+document.addEventListener("DOMContentLoaded", function () {
+  const alerts = document.querySelectorAll('.alert');
+  alerts.forEach((alert) => {
+    const closeBtn = alert.querySelector('.close-alert');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        alert.style.opacity = '0';
+        setTimeout(() => alert.remove(), 500);
+      });
+    }
+    setTimeout(() => {
+      alert.style.opacity = '0';
+      setTimeout(() => alert.remove(), 500);
+    }, 5000);
+  });
+});

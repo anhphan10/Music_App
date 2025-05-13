@@ -15,6 +15,15 @@ database.connect();
 const app: Express = express();
 const port: number | string = process.env.PORT || 3000;
 
+//
+declare module 'express-serve-static-core' {
+    interface Request {
+        flash(type: string, message: string): void;
+        flash(type: string): string[];
+    }
+}
+//
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 //Nhúng file tĩnh
@@ -26,7 +35,12 @@ app.set("view engine", "pug");
 //Hết
 //flash
 app.use(cookieParser("keyboard cat"));
-app.use(session({ cookie: { maxAge: 6000 } }));
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+}));
 app.use(flash());
 //end
 //TinyMCE

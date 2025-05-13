@@ -5,6 +5,7 @@
         "removeComments": true,
         "esModuleInterop": true, // Dùng Import thay require
         "outDir": "dist",
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "typeRoots": ["./node_modules/@types", "./types"]
     }
 }
