@@ -2,5 +2,6 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-    +alert-success(successMessage)
+    if successMessage
+        +alert-success(successMessage)
     h1 Trang Tổng Quan
