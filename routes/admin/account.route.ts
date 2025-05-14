@@ -16,5 +16,6 @@ router.post(
 );
 router.patch("/change-status/:status/:id", controller.changeStatus);
 router.get("/delete/:id", controller.deleteAcc);
+router.get("/edit/:id", controller.edit);
 
 export const accountRoutes: Router = router;

@@ -74,4 +74,12 @@ export const deleteAcc = async (req: Request, res: Response) => {
     }
 }
 
+//[Get]/admin/accounts/edit/:id
+export const edit = async (req: Request, res: Response) => {
+    const account = await Account.findOne({ _id: req.params.id }, { deleted: true });
+    res.render("admin/pages/account/edit",{
+        pageTitle:"Trang Sửa Tài Khoản",
+        account:account
+    })
+}
 

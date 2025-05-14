@@ -3,9 +3,30 @@
         "target": "ES6",
         "module": "CommonJS",
         "removeComments": true,
-        "esModuleInterop": true, // Dùng Import thay require
-        "outDir": "dist",
+        "esModuleInterop": true,
+        "outDir": "./dist",
+        "rootDir": "./",
         "skipLibCheck": true,
-        "typeRoots": ["./node_modules/@types", "./types"]
-    }
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ]
+    },
+    "include": [
+        "index.ts",
+        "controller/**/*.ts",
+        "model/**/*.ts",
+        "routes/**/*.ts",
+        "helper/**/*.ts",
+        "middlewares/**/*.ts",
+        "config/**/*.ts",
+        "validates/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "client",
+        "public",
+        "views"
+    ]
 }
