@@ -17,17 +17,20 @@ export const loginPost = async (req: Request, res: Response) => {
 
     if (md5(req.body.password) != user.password) {
         return res.render("admin/pages/auth/login", {
-            errorMessage: `Sai Mật Khẩu!`,
+            pageTitle: "Trang Đăng Nhập",
+            errorMessage: `Sai Mật Khẩu!`
         });
     }
 
     if (user.status == "inactive") {
         return res.render("admin/pages/auth/login", {
-            errorMessage: `Tài Khoản Không Hoạt Động`,
+            pageTitle: "Trang Đăng Nhập",
+            errorMessage: `Tài Khoản Không Hoạt Động`
         });
     }
     res.cookie("token", user.token);
     res.render("admin/pages/dashboard/index", {
+        pageTitle: "Tổng Quan",
         successMessage: `Đăng Nhập Thành Công!`,
     });
 

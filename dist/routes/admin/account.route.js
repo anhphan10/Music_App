@@ -36,24 +36,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.topicRoutes = void 0;
+exports.accountRoutes = void 0;
 const express_1 = require("express");
+const router = (0, express_1.Router)();
+const controller = __importStar(require("../../controller/admin/account.controller"));
+const uploadCloud = __importStar(require("../../middlewares/admin/uploadCloud.middlewares"));
 const multer_1 = __importDefault(require("multer"));
 const upload = (0, multer_1.default)();
-const uploadCloud = __importStar(require("../../middlewares/admin/uploadCloud.middlewares"));
-const controller = __importStar(require("../../controller/admin/topic.controller"));
-const validate = __importStar(require("../../validates/admin/topic.validate"));
-const router = (0, express_1.Router)();
-router.get("/", controller.topic);
+router.get("/", controller.index);
 router.get("/create", controller.create);
 router.post("/create", upload.fields([
     { name: "avatar", maxCount: 1 }
-]), uploadCloud.uploadFields, validate.createTopic, controller.createPost);
-router.get("/delete/:id", controller.deleteTopic);
-router.get("/detail/:id", controller.detailTopic);
-router.get("/edit/:id", controller.editTopic);
-router.patch("/edit/:id", upload.fields([
-    { name: "avatar", maxCount: 1 }
-]), uploadCloud.uploadFields, controller.editPatchTP);
+]), uploadCloud.uploadFields, controller.createAcc);
 router.patch("/change-status/:status/:id", controller.changeStatus);
-exports.topicRoutes = router;
+router.get("/delete/:id", controller.deleteAcc);
+exports.accountRoutes = router;

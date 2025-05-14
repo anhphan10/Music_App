@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.editPatch = exports.edit = exports.createPost = exports.create = exports.song = void 0;
+exports.changeStatus = exports.detail = exports.deletePost = exports.editPatch = exports.edit = exports.createPost = exports.create = exports.song = void 0;
 const song_model_1 = __importDefault(require("../../model/song.model"));
 const topic_model_1 = __importDefault(require("../../model/topic.model"));
 const singer_model_1 = __importDefault(require("../../model/singer.model"));
@@ -54,8 +54,13 @@ const createPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         audio: audio,
         lyrics: req.body.lyrics
     };
-    const song = new song_model_1.default(dataSong);
-    yield song.save();
+    try {
+        const song = new song_model_1.default(dataSong);
+        yield song.save();
+        req.flash('success', "Thêm Thành Công Bài Hát");
+    }
+    catch (error) {
+    }
     res.redirect(`/${config_1.systemConfig.prefixAdmin}/songs`);
 });
 exports.createPost = createPost;
@@ -98,3 +103,38 @@ const editPatch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.redirect("back");
 });
 exports.editPatch = editPatch;
+const deletePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        yield song_model_1.default.updateOne({ _id: id }, { deleted: true });
+        res.redirect("back");
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+exports.deletePost = deletePost;
+const detail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const song = yield song_model_1.default.findOne({ _id: req.params.id }, { deleted: false });
+    const singer = yield singer_model_1.default.findOne({ _id: song.singerId }).select("fullName");
+    const topic = (yield topic_model_1.default.findOne({ _id: song.topicId }).select("title"));
+    res.render("admin/pages/songs/detail", {
+        pageTitle: "Trang Chi Tiết Bài Hát",
+        song: song,
+        singer: singer,
+        topic: topic
+    });
+});
+exports.detail = detail;
+const changeStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const status = req.params.status;
+    const id = req.params.id;
+    try {
+        yield song_model_1.default.updateOne({ _id: id }, { status: status });
+    }
+    catch (error) {
+        console.log(error);
+    }
+    res.redirect("back");
+});
+exports.changeStatus = changeStatus;

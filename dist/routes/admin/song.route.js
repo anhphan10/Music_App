@@ -55,4 +55,7 @@ router.patch("/edit/:id", upload.fields([
     { name: "avatar", maxCount: 1 },
     { name: "audio", maxCount: 1 }
 ]), uploadCloud.uploadFields, controller.editPatch);
+router.get("/delete/:id", controller.deletePost);
+router.get("/detail/:id", controller.detail);
+router.patch("/change-status/:status/:id", controller.changeStatus);
 exports.songRoutes = router;

@@ -61,11 +61,11 @@ block main
                                         class= "btn btn-warning btn-sm"
                                         href= `/${prefixAdmin}/accounts/edit/${item.id}`
                                     ) Sửa
-                                    button(
-                                        class="btn btn-danger btn-sm m1-1"
-                                        button-delete-account 
-                                        data-id=item.id
+                                    a(
+                                        class= "btn btn-danger btn-sm m1-1"
+                                        href= `/${prefixAdmin}/accounts/delete/${item.id}`
                                     ) Xóa
+
         form(
             action="" 
             method="POST"

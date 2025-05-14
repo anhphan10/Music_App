@@ -58,7 +58,17 @@ export const changeStatus = async (req: Request, res: Response) => {
     const id = req.params.id;
     try {
         await Account.updateOne({ _id: id }, { status: status });
-        res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
+        res.redirect(`/${systemConfig.prefixAdmin}/accounts`)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deleteAcc = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    try {
+        await Account.updateOne({ _id: id }, { deleted: true });
+        res.redirect(`/${systemConfig.prefixAdmin}/accounts`)
     } catch (error) {
         console.log(error);
     }

@@ -36,24 +36,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.topicRoutes = void 0;
-const express_1 = require("express");
-const multer_1 = __importDefault(require("multer"));
-const upload = (0, multer_1.default)();
-const uploadCloud = __importStar(require("../../middlewares/admin/uploadCloud.middlewares"));
-const controller = __importStar(require("../../controller/admin/topic.controller"));
-const validate = __importStar(require("../../validates/admin/topic.validate"));
-const router = (0, express_1.Router)();
-router.get("/", controller.topic);
-router.get("/create", controller.create);
-router.post("/create", upload.fields([
-    { name: "avatar", maxCount: 1 }
-]), uploadCloud.uploadFields, validate.createTopic, controller.createPost);
-router.get("/delete/:id", controller.deleteTopic);
-router.get("/detail/:id", controller.detailTopic);
-router.get("/edit/:id", controller.editTopic);
-router.patch("/edit/:id", upload.fields([
-    { name: "avatar", maxCount: 1 }
-]), uploadCloud.uploadFields, controller.editPatchTP);
-router.patch("/change-status/:status/:id", controller.changeStatus);
-exports.topicRoutes = router;
+const mongoose_1 = __importDefault(require("mongoose"));
+const generate = __importStar(require("../helper/generate"));
+const accountSchema = new mongoose_1.default.Schema({
+    fullName: String,
+    email: String,
+    password: String,
+    token: {
+        type: String,
+        default: generate.generateRandomString(20)
+    },
+    phone: String,
+    avatar: String,
+    status: String,
+    deleted: {
+        type: Boolean,
+        default: false
+    },
+    deletedAt: Date
+}, {
+    timestamps: true
+});
+const Account = mongoose_1.default.model("Account", accountSchema, "account");
+exports.default = Account;
