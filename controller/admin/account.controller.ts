@@ -88,13 +88,15 @@ export const editAcc = async (req: Request, res: Response) => {
     const dataAccount = {
         fullName: req.body.fullName,
         email: req.body.email,
-        password: md5(req.body.password),
         phone: req.body.phone,
         status: req.body.status
     };
     if (req.body.avatar) {
-        dataAccount["avatar"] = req.body.avatar[0]
+        dataAccount["avatar"] = req.body.avatar[0];
     };
+    if (req.body.password) {
+        dataAccount["password"] = md5(req.body.password);
+    }
     try {
         await Account.updateOne({
             _id: id,
