@@ -17,5 +17,13 @@ router.post(
 router.patch("/change-status/:status/:id", controller.changeStatus);
 router.get("/delete/:id", controller.deleteAcc);
 router.get("/edit/:id", controller.edit);
+router.patch(
+    "/edit/:id",
+    upload.fields([
+        { name: "avatar", maxCount: 1 }
+    ]),
+    uploadCloud.uploadFields,
+    controller.editAcc
+);
 
 export const accountRoutes: Router = router;

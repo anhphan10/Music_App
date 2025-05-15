@@ -1,14 +1,13 @@
 extends ../../layouts/default.pug 
 block main
     h1(class="mb-4") #{pageTitle}
-
     form(
         action=`/${prefixAdmin}/accounts/edit/${account.id}?_method=PATCH`
         method="POST"
         enctype="multipart/form-data"
     )
         div(class="form-group")
-        label(for="title") Họ Tên 
+        label(for="fullName") Họ Tên 
         input(
             type="text"
             class="form-control"

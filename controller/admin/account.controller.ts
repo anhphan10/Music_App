@@ -76,10 +76,31 @@ export const deleteAcc = async (req: Request, res: Response) => {
 
 //[Get]/admin/accounts/edit/:id
 export const edit = async (req: Request, res: Response) => {
-    const account = await Account.findOne({ _id: req.params.id }, { deleted: true });
-    res.render("admin/pages/account/edit",{
-        pageTitle:"Trang Sửa Tài Khoản",
-        account:account
+    const account = await Account.findOne({ _id: req.params.id }, { deleted: false });
+    res.render("admin/pages/account/edit", {
+        pageTitle: "Trang Sửa Tài Khoản",
+        account: account
     })
 }
-
+//[Patch]/admin/accounts/edit/:id
+export const editAcc = async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const dataAccount = {
+        fullName: req.body.fullName,
+        email: req.body.email,
+        password: md5(req.body.password),
+        phone: req.body.phone,
+        status: req.body.status
+    };
+    if (req.body.avatar) {
+        dataAccount["avatar"] = req.body.avatar[0]
+    };
+    try {
+        await Account.updateOne({
+            _id: id,
+        }, dataAccount);
+        res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
+    } catch (error) {
+        console.log(error)
+    }
+}
