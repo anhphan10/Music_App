@@ -1,0 +1,41 @@
+extends ../../layouts/default.pug 
+block main
+    h1 Chi Tiết Tài Khoản
+    if (account.avatar)
+        div(class = "mb-4")
+            img(
+                src=account.avatar
+                style="width: 100px"
+            )
+    if (account.fullName)
+        div(class="form-group")
+            label(for="fullName") Họ Tên
+                input(
+                    type="text"
+                    class="form-control"
+                    value= account.fullName
+                )
+    if (account.email)
+        div(class="form-group")
+            label(for="fullName") Email
+                input(
+                    type="text"
+                    class="form-control"
+                    value= account.email
+                )
+    if (account.phone)
+        div(class="form-group")
+            label(for="fullName") Số Điện Thoại
+                input(
+                    type="text"
+                    class="form-control"
+                    value= account.phone
+                )
+    if (account.status)
+        div(class="form-group")
+            label(for="status") Trạng Thái
+                input(
+                    type="text"
+                    class="form-control"
+                    value= account.status
+                )

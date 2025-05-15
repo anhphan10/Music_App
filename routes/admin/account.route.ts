@@ -25,5 +25,6 @@ router.patch(
     uploadCloud.uploadFields,
     controller.editAcc
 );
+router.get("/detail/:id", controller.detail);
 
 export const accountRoutes: Router = router;

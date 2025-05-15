@@ -106,3 +106,11 @@ export const editAcc = async (req: Request, res: Response) => {
         console.log(error)
     }
 }
+//[Get]/admin/accounts/detail/:id
+export const detail = async (req: Request, res: Response) => {
+    const account = await Account.findOne({ _id: req.params.id }, { deleted: false });
+    res.render("admin/pages/account/detail", {
+        pageTitle: "Trang Chi Tiết Tài Khoản",
+        account: account
+    })
+}
