@@ -10,29 +10,37 @@ export const login = async (req: Request, res: Response) => {
 }
 //[POST]/admin/auth/login
 export const loginPost = async (req: Request, res: Response) => {
-    const user = await Account.findOne({ email: req.body.email }, { deleted: false });
-    if (!user) {
-        res.redirect(`/${systemConfig.prefixAdmin}/auth/login`);
+    try {
+        const user = await Account.findOne({ email: req.body.email }, { deleted: false });
+        if (!user) {
+            return res.render("admin/pages/auth/login", {
+                pageTitle: "Trang Đăng Nhập",
+                errorMessage: `Không Tìm Thấy Tài Khoản!`
+            });
+        }
+
+        if (md5(req.body.password) != user.password) {
+            return res.render("admin/pages/auth/login", {
+                pageTitle: "Trang Đăng Nhập",
+                errorMessage: `Sai Mật Khẩu!`
+            });
+        }
+
+        if (user.status == "inactive") {
+            return res.render("admin/pages/auth/login", {
+                pageTitle: "Trang Đăng Nhập",
+                errorMessage: `Tài Khoản Không Hoạt Động`
+            });
+        }
+        res.cookie("token", user.token);
+        res.render("admin/pages/dashboard/index", {
+            pageTitle: "Tổng Quan",
+            successMessage: `Đăng Nhập Thành Công!`,
+        });
+    } catch (error) {
+        console.log(error);
     }
 
-    if (md5(req.body.password) != user.password) {
-        return res.render("admin/pages/auth/login", {
-            pageTitle: "Trang Đăng Nhập",
-            errorMessage: `Sai Mật Khẩu!`
-        });
-    }
-
-    if (user.status == "inactive") {
-        return res.render("admin/pages/auth/login", {
-            pageTitle: "Trang Đăng Nhập",
-            errorMessage: `Tài Khoản Không Hoạt Động`
-        });
-    }
-    res.cookie("token", user.token);
-    res.render("admin/pages/dashboard/index", {
-        pageTitle: "Tổng Quan",
-        successMessage: `Đăng Nhập Thành Công!`,
-    });
 
 }
 //[GET]/admin/auth/logout
