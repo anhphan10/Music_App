@@ -89,3 +89,13 @@ export const editPatch = async (req: Request, res: Response) => {
         console.log(error)
     }
 }
+
+export const deleteSG = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        await Singer.updateOne({ _id: id }, { deleted: true });
+        res.redirect(`/${systemConfig.prefixAdmin}/singers`);
+    } catch (error) {
+        console.log(error);
+    }
+}

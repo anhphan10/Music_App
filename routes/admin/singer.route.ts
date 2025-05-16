@@ -27,5 +27,6 @@ router.patch(
     uploadCloud.uploadFields,
     controller.editPatch
 );
+router.get("/delete/:id", controller.deleteSG);
 
 export const singerRoutes: Router = router;
